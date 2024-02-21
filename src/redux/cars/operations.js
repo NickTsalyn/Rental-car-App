@@ -14,3 +14,14 @@ export const fetchCars = createAsyncThunk(
         }
     }
 )
+
+export const fetchCarById = createAsyncThunk(
+    'cars/fetchCars', async (id, thunkAPI) => {
+        try {
+            const res = await axios.get(`${BASE_URL}/rental/${id}`)
+            return res.data
+        } catch (error) {
+            return thunkAPI.rejectWithValue(error.message)
+        }
+    }
+)

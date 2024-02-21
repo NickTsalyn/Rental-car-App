@@ -1,5 +1,17 @@
 @import-normalize; /* bring in normalize.css styles */
 
+
+:root {
+  --color-button: #3470ff;
+  --color-button-hover: #0b44cd;
+  --color-input: #f7f7fb;
+  --color-text: #121417;
+  --color-text-info: #12141780;
+  --color-text-button: #ffffff;
+  --timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
