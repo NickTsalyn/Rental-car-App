@@ -1,4 +1,6 @@
 import { styled } from 'styled-components';
+import { Button } from './Button';
+import { FiHeart } from "react-icons/fi";
 
 
 export const TitleWrapperStyled = styled.div`
@@ -45,7 +47,7 @@ export const InfoItemLastStyled = styled.p`
   text-overflow: nowrap;
 `;
 
-export const LinkBtnStyled = styled.button`
+export const LinkBtnStyled = styled(Button)`
   display: block;
   width: 100%;
 
@@ -86,3 +88,23 @@ export const CarItemStyled = styled.div`
   justify-content: space-between;
   gap: 28px;
 `;
+
+export const ImgWrapper = styled.div`
+position: relative;
+`
+
+export const Heart = styled(FiHeart)`
+width: 18px;
+height: 18px;
+stroke: white;
+fill: ${({ isActived }) => (isActived ? 'white' : 'none')};
+`
+
+export const HeartBtn = styled.button`
+position: absolute;
+top: 14px;
+right: 14px;
+background: transparent;
+border: none;
+
+`

@@ -1,41 +1,51 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-
-
 import { Card } from './Card';
-import { fetchCars } from 'redux/cars/operations';
+import { fetchCars, pageChange } from 'redux/cars/operations';
 import { allCars } from 'redux/cars/selectors';
-import styled from 'styled-components';
-
-
+import { BtnLoadMore } from './Button.styled';
+import { CardListWrapper, List } from './CardList.styled';
+import { selectBrands } from 'redux/filters/selectors';
 
 export const CardList = () => {
   const dispatch = useDispatch();
   const cars = useSelector(allCars);
+  const selectBrand = useSelector(selectBrands)
+  const [page, setPage] = useState(0);
+
+  const filteredCars = cars.filter(car => car.make === selectBrand)
 
   useEffect(() => {
     dispatch(fetchCars());
   }, [dispatch]);
 
+  useEffect(() => {
+    if (page === 0) {
+      return;
+    } else {
+      dispatch(pageChange(page));
+    }
+  }, [dispatch, page]);
+
+  const loadMore = () => {
+    setPage(page + 1);
+  };
+
   return (
-    <div>
+    <CardListWrapper>
       <List>
-        {cars.map(car => (
+        {selectBrand ? (filteredCars.map(car => (
           <li key={car.id}>
             <Card car={car} />
           </li>
-        ))}
+        ))) : (cars.map(car => (
+          <li key={car.id}>
+            <Card car={car} />
+          </li>
+        )))}
       </List>
-    </div>
+      {cars.length % 2 === 0  && <BtnLoadMore onClick={loadMore}>Load More</BtnLoadMore>} 
+    </CardListWrapper>
   );
 };
-
-
-const List = styled.ul`
-    display: flex;
-    flex-wrap: wrap;
-    row-gap: 50px;
-    column-gap: 29px;
-    
-`

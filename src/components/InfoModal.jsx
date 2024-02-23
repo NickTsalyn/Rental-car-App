@@ -1,37 +1,61 @@
-import { AccentColorStyled, ImgCarStyled, ImgTextWrapperStyled, InfoModalWrapperStyled, InfoTitleWrapperStyled, ModalContentWrapper, TitleModalStyled, InfoModalTextWrapperStyled, InfoModalItemStyled, InfoModalItemLastStyled, DescriptionModalStyled, ConditionsWrapperStyled, SubTitleModalStyled, AccessoriesFuncWrapperStyled, InfoModalAccessoriesWrapperStyled, TextConditionsWrapperStyled, RentalConditionStyled, BtnRentalStyled, CloseIcon } from './Modal.styled';
+import {
+  AccentColorStyled,
+  ImgCarStyled,
+  ImgTextWrapperStyled,
+  InfoModalWrapperStyled,
+  InfoTitleWrapperStyled,
+  ModalContentWrapper,
+  TitleModalStyled,
+  InfoModalTextWrapperStyled,
+  InfoModalItemStyled,
+  InfoModalItemLastStyled,
+  DescriptionModalStyled,
+  ConditionsWrapperStyled,
+  SubTitleModalStyled,
+  AccessoriesFuncWrapperStyled,
+  InfoModalAccessoriesWrapperStyled,
+  TextConditionsWrapperStyled,
+  RentalConditionStyled,
+  BtnRentalStyled,
+  CloseIcon,
+  ConditionStyled,
+  AccentNumberStyled,
+} from './Modal.styled';
 import { useSelector } from 'react-redux';
 import { allCars } from 'redux/cars/selectors';
 
-import {nanoid} from 'nanoid'
+import { nanoid } from 'nanoid';
+import { Fragment } from 'react';
 
+export const InfoModal = ({ id, onClose }) => {
+  const cars = useSelector(allCars);
+  const car = cars.find(car => car.id === id);
 
-export const InfoModal = ({id, onClose}) => {
-    const cars = useSelector(allCars)
-    const car = cars.find(car => car.id === id)
-
-    return(
-     
-        <ModalContentWrapper>
+  return (
+    <ModalContentWrapper>
       <ImgTextWrapperStyled>
         <ImgCarStyled src={car.img} alt={car.description} />
-        <CloseIcon onClick={onClose}/>
+        <CloseIcon onClick={onClose} />
 
         <InfoTitleWrapperStyled>
           <TitleModalStyled>
-            {car.make} <AccentColorStyled>{car.model}</AccentColorStyled>, {car.year}
+            {car.make} <AccentColorStyled>{car.model}</AccentColorStyled>,{' '}
+            {car.year}
           </TitleModalStyled>
 
           <InfoModalWrapperStyled>
             <InfoModalTextWrapperStyled>
               <InfoModalItemStyled>
-                {car.address.split(",").splice(1, 1)}
+                {car.address.split(',').splice(1, 1)}
               </InfoModalItemStyled>
               <InfoModalItemStyled>
-                {car.address.split(",").splice(2, 1)}
+                {car.address.split(',').splice(2, 1)}
               </InfoModalItemStyled>
               <InfoModalItemStyled>Id: {car.id}</InfoModalItemStyled>
               <InfoModalItemStyled>Year: {car.year}</InfoModalItemStyled>
-              <InfoModalItemLastStyled>Type: {car.type}</InfoModalItemLastStyled>
+              <InfoModalItemLastStyled>
+                Type: {car.type}
+              </InfoModalItemLastStyled>
             </InfoModalTextWrapperStyled>
 
             <InfoModalTextWrapperStyled>
@@ -54,7 +78,7 @@ export const InfoModal = ({id, onClose}) => {
         </SubTitleModalStyled>
         <AccessoriesFuncWrapperStyled>
           <InfoModalAccessoriesWrapperStyled>
-            {car.accessories.map((accessory) => {
+            {car.accessories.map(accessory => {
               const accessoriesID = nanoid();
               return (
                 <InfoModalItemStyled key={accessoriesID}>
@@ -64,7 +88,7 @@ export const InfoModal = ({id, onClose}) => {
             })}
           </InfoModalAccessoriesWrapperStyled>
           <InfoModalTextWrapperStyled>
-            {car.functionalities.map((functionality) => {
+            {car.functionalities.map(functionality => {
               const funcID = nanoid();
               return (
                 <InfoModalItemStyled key={funcID}>
@@ -79,18 +103,43 @@ export const InfoModal = ({id, onClose}) => {
       <ConditionsWrapperStyled>
         <SubTitleModalStyled>Rental Conditions:</SubTitleModalStyled>
         <TextConditionsWrapperStyled>
-          {car.rentalConditions.split("\n").map((condition, index) => (
+          {car.rentalConditions.split('\n').map((condition, index) => (
             <RentalConditionStyled key={index}>
+              <ConditionStyled>
+                {condition.includes(':')
+                  ? condition
+                      .split(':')
+                      .map((part, i) => (
+                        <Fragment key={i}>
+                          {i === 0 ? (
+                            <RentalConditionStyled>
+                              {part}:&nbsp;
+                            </RentalConditionStyled>
+                          ) : (
+                            <AccentNumberStyled>{part}</AccentNumberStyled>
+                          )}
+                        </Fragment>
+                      ))
+                  : condition}
+              </ConditionStyled>
             </RentalConditionStyled>
           ))}
+          <RentalConditionStyled>
+          <ConditionStyled>
+            Mileage:
+            <AccentNumberStyled> {car.mileage}</AccentNumberStyled>
+          </ConditionStyled>
+          <ConditionStyled>
+            Price:
+            <AccentNumberStyled> {car.rentalPrice}</AccentNumberStyled>
+          </ConditionStyled>
+          </RentalConditionStyled>
         </TextConditionsWrapperStyled>
       </ConditionsWrapperStyled>
 
-      
-
       <BtnRentalStyled href="tel:+380730000000">Rental Car</BtnRentalStyled>
     </ModalContentWrapper>
-    )
-}
+  );
+};
 
-export default InfoModal
+export default InfoModal;

@@ -154,7 +154,7 @@ export const RentalConditionStyled = styled.div`
 export const ConditionStyled = styled.div`
   display: flex;
   flex-wrap: nowrap;
-
+  font-size: 12px;
   padding: 7px 14px;
   border-radius: 35px;
   background-color: #f9f9f9;
