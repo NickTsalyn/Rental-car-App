@@ -30,12 +30,14 @@ src/redux: Redux actions, reducers, and store configuration.
 Clone by this link: https://mockapi.io/projects/65d52e1c3f1ab8c634369daf
 
 Endpoints for Catalog: GET: "/rental"
-GET: "/rental"
+
+1. GET: "/rental"
 
 Endpoints for Favorites:
-GET: "/favorites"
-POST: "/favorites"
-DELETE: "/favorites/:id"
+
+1. GET: "/favorites"
+2. POST: "/favorites"
+3. DELETE: "/favorites/:id"
 
 ### About Author
 Full-stack developer - Mykola Tsalyn. GitHub: https://github.com/NickTsalyn LinkedIn: https://www.linkedin.com/in/nick-tsalyn
