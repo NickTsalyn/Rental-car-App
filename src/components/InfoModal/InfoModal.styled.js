@@ -27,12 +27,12 @@ export const ImgCarStyled = styled.img`
   }
 `;
 
-export const BtnRentalStyled = styled.button`
+export const BtnRentalStyled = styled.a`
   display: inline-block;
 
   text-align: center;
 
-  width: 168px;
+  width: 67px;
   padding: 12px 50px;
   white-space: nowrap;
   background-color: var(--color-button);
