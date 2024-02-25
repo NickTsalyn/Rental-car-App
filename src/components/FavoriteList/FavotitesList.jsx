@@ -3,7 +3,7 @@ import { CardListWrapper, List } from '../CardList/CardList.styled';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectFavorite } from 'redux/favorites/selectors';
 import { getFavorite } from 'redux/favorites/operations';
-import { FavoriteListItem } from './FavoriteListItem';
+import { FavoriteListItem } from '../FavoriteListItem/FavoriteListItem';
 
 export const FavotitesList = () => {
   const dispatch = useDispatch();
