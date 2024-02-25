@@ -21,6 +21,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { selectFavorite } from 'redux/favorites/selectors';
 import { allCars } from 'redux/cars/selectors';
 import { addFavorite, deleteFavorite } from 'redux/favorites/operations';
+import toast from 'react-hot-toast';
 
 const customStyles = {
   overlay: {
@@ -44,6 +45,8 @@ const customStyles = {
   Modal.setAppElement('#root');
 
 export const Card = ({ car }) => {
+
+
   const favoriteCars = useSelector(selectFavorite);
   const cars = useSelector(allCars);
   const dispatch = useDispatch();
@@ -60,11 +63,12 @@ export const Card = ({ car }) => {
 
   const toggleIcon = (carId) => {
     const foundCar = favoriteCars.find((car) => car.id === carId)
-    console.log(foundCar)
 
     if(foundCar) {
       setIsActivated(false)
       dispatch(deleteFavorite(foundCar._id))
+      toast.success('Deleted from favorites')
+     
     }
     else {
       const chosenFavCar = cars.find((car) => car.id === carId)
@@ -73,11 +77,13 @@ export const Card = ({ car }) => {
         id: carId,
         ...chosenFavCar
       }))
-      console.log(chosenFavCar)
+      toast.success('Added to favorites')
      
     }
   }
-  console.log(favoriteCars)
+
+   
+  
 
   const openModal = () => {
     setIsModalOpen(true);

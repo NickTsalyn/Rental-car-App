@@ -14,8 +14,16 @@ export const CardList = () => {
   const cars = useSelector(allCars);
   const selectBrand = useSelector(selectBrands)
   const [page, setPage] = useState(0);
-
+  // const [allPages, setAllPages] = useState(true)
   const filteredCars = cars.filter(car => car.make === selectBrand)
+
+  // const itemsPerPage = 12;
+  // const totalItems = selectBrand ? filteredCars.length : cars.length
+  // const totalPages = Math.ceil(totalItems / itemsPerPage);
+  // setAllPages(totalPages)
+  
+
+
 
   useEffect(() => {
     dispatch(fetchCars());
@@ -33,6 +41,7 @@ export const CardList = () => {
     setPage(page + 1);
   };
 
+
   return (
     <CardListWrapper>
       <List>
@@ -46,7 +55,7 @@ export const CardList = () => {
           </li>
         )))}
       </List>
-      {cars.length % 2 === 0  && <BtnLoadMore onClick={loadMore}>Load More</BtnLoadMore>} 
+      { page < 3  && <BtnLoadMore onClick={loadMore}>Load More</BtnLoadMore>} 
     </CardListWrapper>
   );
 };

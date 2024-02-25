@@ -126,11 +126,11 @@ export const InfoModal = ({ id, onClose }) => {
           ))}
           <RentalConditionStyled>
           <ConditionStyled>
-            Mileage:
+            Mileage:&nbsp;
             <AccentNumberStyled> {car.mileage}</AccentNumberStyled>
           </ConditionStyled>
           <ConditionStyled>
-            Price:
+            Price:&nbsp;
             <AccentNumberStyled> {car.rentalPrice}</AccentNumberStyled>
           </ConditionStyled>
           </RentalConditionStyled>
