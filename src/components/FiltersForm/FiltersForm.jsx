@@ -33,7 +33,7 @@ const customStyles = {
 
   input: provided => ({
     ...provided,
-    display: 'none',
+    // display: 'none',
   }),
   dropdownIndicator: provided => ({
     ...provided,
@@ -71,6 +71,7 @@ const customStyles = {
 
 export const FiltersForm = () => {
   const carMakes = [
+    'Select all cars',
     'Buick',
     'Volvo',
     'HUMMER',
@@ -121,13 +122,18 @@ export const FiltersForm = () => {
   }, []);
 
   const handleChangeBrand = (option) => {
-    setSelectedBrand(option.value);
+    if (option.value === 'Select all cars') {
+      setSelectedBrand('');
+    } else {
+      setSelectedBrand(option.value);
+    }
   };
 
   const handleSubmit = e => {
     e.preventDefault();
-    dispatch(updateBrand(selectedBrand))
+    dispatch(updateBrand(selectedBrand));
     dispatch(fetchCars(selectedBrand))
+    setMenuIsOpen(false);
   };
 
   return (

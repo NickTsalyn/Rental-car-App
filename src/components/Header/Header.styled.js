@@ -2,9 +2,9 @@ import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 
 export const WrapperStyled = styled.nav`
-  position: fixed;
+  /* position: fixed;
   top: 0px;
-  left: 0px;
+  left: 0px; */
 
   width: 100vw;
 
@@ -12,13 +12,16 @@ export const WrapperStyled = styled.nav`
 
   background-color: lightblue;
 
-  z-index: 100;
+  /* z-index: 100; */
+
+  margin-bottom: 50px;
 `;
 
 export const NavWrapperStyled = styled.ul`
   display: flex;
   padding: 0 128px;
-  justify-content: space-around;
+  /* justify-content: center; */
+  gap: 20px;
 `;
 
 export const NavElStyled = styled(NavLink)`

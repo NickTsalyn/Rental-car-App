@@ -17,5 +17,5 @@ export const Layout = () => {
 
 const LayoutWrapper = styled.div`
   width: 1440px;
-  padding: 150px 128px;
+  /* padding: 150px 128px; */
 `;

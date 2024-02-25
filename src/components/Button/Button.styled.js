@@ -13,4 +13,5 @@ color: #3470ff;
 background-color: transparent;
 border: none;
 text-align: center;
+margin-bottom: 30px;
 `

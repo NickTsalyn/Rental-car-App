@@ -37,7 +37,7 @@ export const deleteFavorite = createAsyncThunk(
     try {
       const url = `/favorites`;
 
-      const res = await axios.get(`${BASE_URL}${url}/${carId}`)
+      const res = await axios.delete(`${BASE_URL}${url}/${carId}`)
       return res.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);

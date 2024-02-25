@@ -9,7 +9,7 @@ export const Header = () => {
         <NavElStyled to="/">Welcome</NavElStyled>
       </li>
       <li>
-        <NavElStyled to="/home">Home</NavElStyled>
+        <NavElStyled to="/catalog">Home</NavElStyled>
       </li>
       <li>
         <NavElStyled to="/favorites">Favorite</NavElStyled>

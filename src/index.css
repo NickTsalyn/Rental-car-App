@@ -34,19 +34,13 @@
   --timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-
 body {
   margin: 0;
-  font-family: 'Manrope' sans-serif
-    sans-serif;
+  font-family: 'Manrope', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-}
 
 p,
 h1,

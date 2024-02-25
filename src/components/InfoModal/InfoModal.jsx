@@ -20,7 +20,7 @@ import {
   CloseIcon,
   ConditionStyled,
   AccentNumberStyled,
-} from './Modal.styled';
+} from './InfoModal.styled';
 import { useSelector } from 'react-redux';
 import { allCars } from 'redux/cars/selectors';
 

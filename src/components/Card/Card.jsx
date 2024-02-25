@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import { useState } from 'react';
 import {
@@ -16,11 +16,11 @@ import {
 } from './Card.styled';
 // import { InfoModal } from './InfoModal';
 import Modal from 'react-modal';
-import InfoModal from './InfoModal';
+import InfoModal from '../InfoModal/InfoModal';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectFavorite } from 'redux/favorites/selectors';
 import { allCars } from 'redux/cars/selectors';
-// import { addFavorite } from 'redux/favorites/operations';
+import { addFavorite, deleteFavorite } from 'redux/favorites/operations';
 
 const customStyles = {
   overlay: {
@@ -41,15 +41,43 @@ const customStyles = {
   },
 };
 
-//   Modal.setAppElement('#root');
+  Modal.setAppElement('#root');
 
-export const FavoriteListItem = ({ favoriteCars }) => {
-//   const favoriteCars = useSelector(selectFavorite);
+export const Card = ({ car }) => {
+  const favoriteCars = useSelector(selectFavorite);
   const cars = useSelector(allCars);
-//   const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isActived, setIsActived] = useState(false);
-  // const [favCar, setFavCar] = useState([]);
+  const [isActivated, setIsActivated] = useState(false);
+
+
+  useEffect(() => {
+    const isCarFav =  !!favoriteCars.find(item => item.id === car.id)
+    setIsActivated(isCarFav)
+  }, [])
+  
+
+
+  const toggleIcon = (carId) => {
+    const foundCar = favoriteCars.find((car) => car.id === carId)
+    console.log(foundCar)
+
+    if(foundCar) {
+      setIsActivated(false)
+      dispatch(deleteFavorite(foundCar._id))
+    }
+    else {
+      const chosenFavCar = cars.find((car) => car.id === carId)
+      setIsActivated(true)
+      dispatch(addFavorite({
+        id: carId,
+        ...chosenFavCar
+      }))
+      console.log(chosenFavCar)
+     
+    }
+  }
+  console.log(favoriteCars)
 
   const openModal = () => {
     setIsModalOpen(true);
@@ -65,53 +93,36 @@ export const FavoriteListItem = ({ favoriteCars }) => {
     }
   };
 
-//   const addFavorites = () => {
 
-//     setIsActived(isActived);
-//     // const clickCar = cars.find(item => item.id === favoriteCars.id)
-//     const foundCar = cars.filter((item) => item.id === favoriteCar.id);
-//     console.log(favoriteCar.id)
-//     console.log(foundCar)
-//     console.log(favoriteCars)
-//     // console.log(clickCar)
-//     // const favCar = favoriteCars.map(item => item.id === car.id)
-//     dispatch(addFavorite(foundCar));
-//     // if (favoriteCars.id) {
-//     //  return
-//     // }
-//     // else {
-//     //   dispatch(addFavorite(car));
-//     // }
-//   };
 
   return (
     <CarItemStyled>
       <ContentWrapperStyled>
         <ImgWrapper>
-          <HeartBtn isActive={isActived}>
-            <Heart />
+          <HeartBtn onClick={() => toggleIcon(car.id)}>
+            <Heart isActived={isActivated}/>
           </HeartBtn>
 
-          <Img loading="lazy" src={favoriteCars.img} alt={favoriteCars.make} />
+          <Img src={car.img} alt={car.make} />
         </ImgWrapper>
 
         <TitleWrapperStyled>
           <p>
-            {favoriteCars.make} <AccentColStyled>{favoriteCars.model}</AccentColStyled>,{favoriteCars.year}
+            {car.make} <AccentColStyled>{car.model}</AccentColStyled>,{car.year}
           </p>
 
-          <p>{favoriteCars.rentalPrice}</p>
+          <p>{car.rentalPrice}</p>
         </TitleWrapperStyled>
         <InfoWrapperStyled>
-          <InfoItemStyled>{favoriteCars.address.split(',').splice(1, 1)}</InfoItemStyled>
-          <InfoItemStyled>{favoriteCars.address.split(',').splice(2, 1)}</InfoItemStyled>
-          <InfoItemStyled>{favoriteCars.rentalCompany}</InfoItemStyled>
+          <InfoItemStyled>{car.address.split(',').splice(1, 1)}</InfoItemStyled>
+          <InfoItemStyled>{car.address.split(',').splice(2, 1)}</InfoItemStyled>
+          <InfoItemStyled>{car.rentalCompany}</InfoItemStyled>
         </InfoWrapperStyled>
         <InfoWrapperStyled>
-          <InfoItemStyled>{favoriteCars.type}</InfoItemStyled>
-          <InfoItemStyled>{favoriteCars.model}</InfoItemStyled>
-          <InfoItemStyled>{favoriteCars.id}</InfoItemStyled>
-          <InfoItemLastStyled>{favoriteCars.functionalities[0]}</InfoItemLastStyled>
+          <InfoItemStyled>{car.type}</InfoItemStyled>
+          <InfoItemStyled>{car.model}</InfoItemStyled>
+          <InfoItemStyled>{car.id}</InfoItemStyled>
+          <InfoItemLastStyled>{car.functionalities[0]}</InfoItemLastStyled>
         </InfoWrapperStyled>
       </ContentWrapperStyled>
       <LinkBtnStyled onClick={openModal}>Learn more</LinkBtnStyled>
@@ -123,7 +134,7 @@ export const FavoriteListItem = ({ favoriteCars }) => {
           handleAfterClose={handleAfterClose}
           style={customStyles}
         >
-          <InfoModal onClose={closeModal} id={favoriteCars.id} />
+          <InfoModal onClose={closeModal} id={car.id} />
         </Modal>
       )}
     </CarItemStyled>

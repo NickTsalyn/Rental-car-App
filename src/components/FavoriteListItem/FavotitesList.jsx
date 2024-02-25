@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { CardListWrapper, List } from './CardList.styled';
+import { CardListWrapper, List } from '../CardList/CardList.styled';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectFavorite } from 'redux/favorites/selectors';
 import { getFavorite } from 'redux/favorites/operations';
@@ -13,13 +13,12 @@ export const FavotitesList = () => {
     dispatch(getFavorite());
   }, [dispatch]);
 
-  console.log(favoriteCars)
   return (
     <CardListWrapper>
       <List>
       {favoriteCars.map(favoriteCar => ( 
           <li key={favoriteCar.id} >
-            <FavoriteListItem favoriteCars={favoriteCar}/>
+            <FavoriteListItem favCar={favoriteCar}/>
           </li>
       ))}
       </List>

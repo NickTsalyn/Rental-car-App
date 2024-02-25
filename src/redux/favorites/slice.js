@@ -30,7 +30,7 @@ const favoriteSlice = createSlice({
     [addFavorite.fulfilled](state, action) {
       state.isLoading = false;
       state.error = null;
-      state.favorite.push(action.payload)
+      state.favorite.push(action.payload);
     },
     [deleteFavorite.pending]: handlePending,
     [deleteFavorite.error]: handleRejected,

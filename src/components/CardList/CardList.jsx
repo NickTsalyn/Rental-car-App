@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { Card } from './Card';
+import { Card } from '../Card/Card';
 import { fetchCars, pageChange } from 'redux/cars/operations';
 import { allCars } from 'redux/cars/selectors';
-import { BtnLoadMore } from './Button.styled';
+import { BtnLoadMore } from '../Button/Button.styled';
 import { CardListWrapper, List } from './CardList.styled';
 import { selectBrands } from 'redux/filters/selectors';
+import { nanoid } from 'nanoid';
 
 export const CardList = () => {
   const dispatch = useDispatch();
@@ -36,11 +37,11 @@ export const CardList = () => {
     <CardListWrapper>
       <List>
         {selectBrand ? (filteredCars.map(car => (
-          <li key={car.id}>
+          <li key={nanoid()}>
             <Card car={car} />
           </li>
         ))) : (cars.map(car => (
-          <li key={car.id}>
+          <li key={nanoid()}>
             <Card car={car} />
           </li>
         )))}

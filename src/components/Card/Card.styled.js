@@ -1,6 +1,6 @@
 import { styled } from 'styled-components';
-import { Button } from './Button';
-import { FiHeart } from "react-icons/fi";
+import { Button } from '../Button/Button';
+import {  AiFillHeart } from "react-icons/ai";
 
 
 export const TitleWrapperStyled = styled.div`
@@ -93,11 +93,11 @@ export const ImgWrapper = styled.div`
 position: relative;
 `
 
-export const Heart = styled(FiHeart)`
+export const Heart = styled(AiFillHeart)`
 width: 18px;
 height: 18px;
-stroke: white;
-fill: ${({ isActived }) => (isActived ? 'white' : 'none')};
+/* stroke: white; */
+fill: ${({ isActived }) => (isActived ? 'blue' : 'white')};
 `
 
 export const HeartBtn = styled.button`

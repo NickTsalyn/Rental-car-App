@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { InfoWrapperStyled } from "./Card.styled";
+import { InfoWrapperStyled } from "../Card/Card.styled";
 import { IoMdClose } from "react-icons/io";
 // import { InfoWrapperStyled } from "../../pages/CatalogPage/CatalogPage.styled";
 

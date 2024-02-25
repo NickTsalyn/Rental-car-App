@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 
-import { HomeWrapper } from './Home.styled';
-import { FavotitesList } from './FavotitesList';
+import { HomeWrapper } from '../HomePage/Home.styled';
+import { FavotitesList } from '../../components/FavoriteListItem/FavotitesList';
 
 export const Favorites = () => {
 
