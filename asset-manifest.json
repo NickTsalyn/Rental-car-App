@@ -1,17 +1,17 @@
 {
   "files": {
     "main.css": "/rental-car-app/static/css/main.bad7b282.css",
-    "main.js": "/rental-car-app/static/js/main.4d4becbe.js",
+    "main.js": "/rental-car-app/static/js/main.853f3f0b.js",
     "static/media/CAR LOGO - Made with PosterMyWall-Photoroom.png": "/rental-car-app/static/media/CAR LOGO - Made with PosterMyWall-Photoroom.fe561eebeded85370699.png",
     "static/media/manrope-v15-latin-600.woff2": "/rental-car-app/static/media/manrope-v15-latin-600.ec61c26ae9843c74c66e.woff2",
     "static/media/manrope-v15-latin-regular.woff2": "/rental-car-app/static/media/manrope-v15-latin-regular.5b06bf94f857e4244b64.woff2",
     "static/media/manrope-v15-latin-500.woff2": "/rental-car-app/static/media/manrope-v15-latin-500.b6bf3db6256270076d37.woff2",
     "index.html": "/rental-car-app/index.html",
     "main.bad7b282.css.map": "/rental-car-app/static/css/main.bad7b282.css.map",
-    "main.4d4becbe.js.map": "/rental-car-app/static/js/main.4d4becbe.js.map"
+    "main.853f3f0b.js.map": "/rental-car-app/static/js/main.853f3f0b.js.map"
   },
   "entrypoints": [
     "static/css/main.bad7b282.css",
-    "static/js/main.4d4becbe.js"
+    "static/js/main.853f3f0b.js"
   ]
 }
