@@ -53,7 +53,7 @@ export const FavoriteListItem = ({ favCar }) => {
     useEffect(() => {
         const isCarFav =  !!favoriteCars.find(item => item.id === favCar.id)
         setIsActivated(isCarFav)
-      }, [])
+      }, [favCar.id, favoriteCars])
   
   
   
